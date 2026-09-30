@@ -1,3 +1,5 @@
+import { BrowserRouter } from 'react-router-dom'
+import Layout from '../layout/layout/Layout'
 import './App.css'
 
 function App() {
@@ -5,7 +7,9 @@ function App() {
 
   return (
     <div className='App'>
-      app
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
     </div>
   )
 }
