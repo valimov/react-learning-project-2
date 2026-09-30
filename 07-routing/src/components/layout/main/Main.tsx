@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Profile from "../../posts/profile/Profile";
 import Feed from "../../posts/feed/Feed";
 import NotFound from "../not-found/NotFound";
-import Search from "../../search/Search";
+import Search from "../../posts/search/Search";
 
 export default function Main() {
     return (
