@@ -9,8 +9,12 @@ export default function Feed() {
 
   useEffect(() => {
     (async () => {
-      const feed = await feedService.getFeed();
-      setFeed(feed);
+      try { 
+        const feed = await feedService.getFeed();
+        setFeed(feed);
+      } catch (e) {
+        alert(e);
+      }
     })();
   }, []);
 

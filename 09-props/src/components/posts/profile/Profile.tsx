@@ -10,8 +10,12 @@ export default function Profile() {
   const [profile, setProfile] = useState<PostModel[]>([]) ;
   useEffect(() => {
     (async () => {
-      const profile =await profileService.getProfile();
-      setProfile(profile);
+      try {
+        const profile =await profileService.getProfile();
+        setProfile(profile);
+      } catch (e) {
+       alert(e);
+      }
     })();
   }, []);
   return (

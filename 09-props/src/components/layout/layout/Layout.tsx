@@ -1,8 +1,8 @@
 import './Layout.css'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
-import Following from '../following/Following'
-import Followers from '../followers/Followers'
+import Following from '../../follows/following/Following'
+import Followers from '../../follows/followers/Followers'
 import Main from '../main/Main'
 
 export default function Layout() {
