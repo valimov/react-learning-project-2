@@ -4,6 +4,8 @@ import type PostComment from '../../../models/post-comment/PostComment'
 import profileService from '../../../services/profile'
 import Comments from '../comments/Comments'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import SpinnerButton from '../../common/spinner-button/SpinnerButton'
 
 interface PostProps {
     post: PostModel
@@ -16,14 +18,19 @@ export default function Post(props: PostProps) {
     const { id, title, body, user, createdAt, comments } = props.post
     const { isAllowedAction, removePost, addComment } = props
 
+    const [isDeleting, setIsDeleting] = useState(false)
+
     async function deleteMe() {
         try {
             if (confirm('Are you sure you want to delete this post?')) {
+                setIsDeleting(true)
                 await profileService.remove(id)
                 removePost?.(id)
             }
         } catch (e) {
             alert(e)
+        } finally {
+            setIsDeleting(false)
         }
     }
 
@@ -41,7 +48,12 @@ export default function Post(props: PostProps) {
             <div className="body">{body}</div>
             {isAllowedAction && (
                 <div className="button">
-                    <button onClick={deleteMe}>Delete</button>
+                    <SpinnerButton
+                        isSubmitting={isDeleting}
+                        buttonText="Delete"
+                        spinnerText="deleting from database..."
+                        onClick={deleteMe}
+                    />
                     <button onClick={editMe}>Edit</button>
                 </div>
             )}

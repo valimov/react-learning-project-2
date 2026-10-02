@@ -4,6 +4,7 @@ import './Feed.css'
 import type PostModel from '../../../models/post/Post'
 import type PostComment from '../../../models/post-comment/PostComment'
 import Post from '../post/Post'
+import Spinner from '../../common/spinner/Spinner'
 
 export default function Feed() {
     const [feed, setFeed] = useState<PostModel[]>([])
@@ -29,14 +30,19 @@ export default function Feed() {
 
     return (
         <div className="Feed">
-            {feed.map(post => (
-                <Post
-                    key={post.id}
-                    post={post}
-                    isAllowedAction={false}
-                    addComment={addComment}
-                />
-            ))}
+            {feed.length === 0 && <Spinner />}
+            {feed.length > 0 && (
+                <>
+                    {feed.map(post => (
+                        <Post
+                            key={post.id}
+                            post={post}
+                            isAllowedAction={false}
+                            addComment={addComment}
+                        />
+                    ))}
+                </>
+            )}
         </div>
     )
 }

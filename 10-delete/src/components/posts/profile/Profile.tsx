@@ -5,6 +5,7 @@ import type PostModel from '../../../models/post/Post'
 import type PostComment from '../../../models/post-comment/PostComment'
 import Post from '../post/Post'
 import NewPost from '../new/NewPost'
+import Spinner from '../../common/spinner/Spinner'
 
 export default function Profile() {
     const [profile, setProfile] = useState<PostModel[]>([])
@@ -38,16 +39,21 @@ export default function Profile() {
 
     return (
         <div className="Profile">
-            <NewPost addPost={addPost} />
-            {profile.map(post => (
-                <Post
-                    key={post.id}
-                    post={post}
-                    isAllowedAction={true}
-                    removePost={removePost}
-                    addComment={addComment}
-                />
-            ))}
+            {profile.length === 0 && <Spinner />}
+            {profile.length > 0 && (
+                <>
+                    <NewPost addPost={addPost} />
+                    {profile.map(post => (
+                        <Post
+                            key={post.id}
+                            post={post}
+                            isAllowedAction={true}
+                            removePost={removePost}
+                            addComment={addComment}
+                        />
+                    ))}
+                </>
+            )}
         </div>
     )
 }

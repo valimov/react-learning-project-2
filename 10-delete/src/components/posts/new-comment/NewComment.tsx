@@ -3,6 +3,7 @@ import './NewComment.css'
 import type PostCommentDraft from '../../../models/post-comment/PostCommentDraft'
 import type PostComment from '../../../models/post-comment/PostComment'
 import commentsService from '../../../services/comments'
+import SpinnerButton from '../../common/spinner-button/SpinnerButton'
 
 interface NewCommentProps {
     postId: string
@@ -40,7 +41,11 @@ export default function NewComment(props: NewCommentProps) {
                     })}
                 />
                 <span className="form-error">{formState.errors.body?.message}</span>
-                <button>add comment</button>
+                <SpinnerButton
+                    isSubmitting={formState.isSubmitting}
+                    buttonText="Add Comment"
+                    spinnerText="saving comment to database..."
+                />
             </form>
         </div>
     )
