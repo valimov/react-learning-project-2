@@ -7,6 +7,10 @@ class ProfileService {
         const response = await axios.get<Post[]>(`${import.meta.env.VITE_REST_SERVER_URL}/allow/profile`);
         return response.data;
     }
+    async getPost(id: string):Promise<Post> {
+        const response = await axios.get<Post>(`${import.meta.env.VITE_REST_SERVER_URL}/allow/profile/${id}`);
+        return response.data;
+    }
 
     async remove(id: string):Promise<boolean> {
         const response = await axios.delete<boolean>(`${import.meta.env.VITE_REST_SERVER_URL}/allow/profile/${id}`);
@@ -16,6 +20,11 @@ class ProfileService {
 
     async create(draft: PostDraft):Promise<Post> {
         const response = await axios.post<Post>(`${import.meta.env.VITE_REST_SERVER_URL}/allow/profile`, draft);
+        return response.data;
+    }
+
+    async edit(id: string, draft: PostDraft):Promise<Post> {
+        const response = await axios.patch<Post>(`${import.meta.env.VITE_REST_SERVER_URL}/allow/profile/${id}`, draft);
         return response.data;
     }
 

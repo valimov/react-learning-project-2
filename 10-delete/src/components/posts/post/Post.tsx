@@ -3,6 +3,7 @@ import type PostModel from '../../../models/post/Post'
 import type PostComment from '../../../models/post-comment/PostComment'
 import profileService from '../../../services/profile'
 import Comments from '../comments/Comments'
+import { useNavigate } from 'react-router-dom'
 
 interface PostProps {
     post: PostModel
@@ -26,6 +27,11 @@ export default function Post(props: PostProps) {
         }
     }
 
+    const navigate = useNavigate()
+    function editMe() {
+        navigate(`/profile/edit/${id}`)
+    }
+
     return (
         <div className="Post">
             <div className="title">{title}</div>
@@ -36,6 +42,7 @@ export default function Post(props: PostProps) {
             {isAllowedAction && (
                 <div className="button">
                     <button onClick={deleteMe}>Delete</button>
+                    <button onClick={editMe}>Edit</button>
                 </div>
             )}
             <Comments
