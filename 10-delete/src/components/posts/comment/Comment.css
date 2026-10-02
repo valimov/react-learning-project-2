@@ -1,0 +1,18 @@
+.Comment {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px dashed lightgreen;
+    padding: 4px;
+    margin: 8px;
+    border-radius: 4px;
+    box-shadow: 2px;
+}
+
+.Comment .by-line {
+    text-decoration: underline;
+}
+
+.Comment .body {
+    font-size: small;
+}

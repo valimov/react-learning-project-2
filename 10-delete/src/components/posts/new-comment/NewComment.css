@@ -1,0 +1,11 @@
+.NewComment > form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.NewComment .form-error {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}
